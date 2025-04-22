@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>We're Truly Sorry, Sir</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, #dff6ff, #ffffff);
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 100px 20px 60px;
+      background: transparent;
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      font-family: 'Pacifico', cursive;
+      color: #0077b6;
+      animation: fadeInDown 2s ease-in-out;
+    }
+
+    .apology-section {
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    .apology-card {
+      max-width: 600px;
+      margin: auto;
+      background: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    .interactive-buttons {
+      text-align: center;
+      margin: 50px 0;
+    }
+
+    .interactive-buttons button {
+      font-size: 1.2rem;
+      padding: 15px 30px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      background-color: #48cae4;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s, background-color 0.3s;
+    }
+
+    .interactive-buttons button:hover {
+      background-color: #00b4d8;
+      transform: scale(1.05);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      z-index: 1000;
+    }
+
+    .modal.show {
+      display: block;
+    }
+
+    .modal p {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+    }
+
+    #confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    .quote {
+      font-style: italic;
+      margin-top: 20px;
+      color: #555;
+    }
+
+    .math-puzzle {
+      text-align: center;
+      padding: 30px;
+    }
+
+    .math-puzzle input {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="confetti-canvas"></canvas>
+  <header>
+    <h1 class="animate__animated animate__fadeInDown">We’re Truly Sorry, Sir</h1>
+  </header>
+
+  <section class="apology-section">
+    <div class="apology-card">
+      <p id="apology-text"></p>
+    </div>
+  </section>
+
+  <section class="interactive-buttons">
+    <button onclick="showModal()">Forgive Us 🙏</button>
+  </section>
+
+  <div id="forgiveModal" class="modal">
+    <p>💖 Thank you for understanding! 💖</p>
+    <p class="quote">“Great teachers understand. Greater students learn from their mistakes.”</p>
+    <button onclick="closeModal()">Close</button>
+  </div>
+
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.18/dist/index.min.js"></script>
+  <script>
+    // Typewriter effect
+    const apologyText = "Respected sir we sincerely apologize for our behavior in the .Sorry for not paying attention .Sorry once again 🙏🏻🙏🏻";
+    let i = 0;
+    function typeWriter() {
+      if (i < apologyText.length) {
+        document.getElementById("apology-text").innerHTML += apologyText.charAt(i);
+        i++;
+        setTimeout(typeWriter, 50);
+      }
+    }
+    typeWriter();
+
+    // Modal and confetti
+    function showModal() {
+      document.getElementById("forgiveModal").classList.add("show");
+      const confettiSettings = { target: 'confetti-canvas' };
+      const confetti = new ConfettiGenerator(confettiSettings);
+      confetti.render();
+    }
+
+    function closeModal() {
+      document.getElementById("forgiveModal").classList.remove("show");
+    }
+
+    // Math puzzle
+    function checkPuzzle() {
+      const answer = document.getElementById("puzzleAnswer").value;
+      const feedback = document.getElementById("puzzleFeedback");
+      if (answer == 15) {
+        feedback.innerHTML = "✅ Great job! You're ready to conquer Math!";
+        feedback.style.color = 'green';
+      } else {
+        feedback.innerHTML = "❌ Oops! Try again.";
+        feedback.style.color = 'red';
+      }
+    }
+  </script>
+</body>
+</html>
